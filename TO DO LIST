@@ -1,0 +1,77 @@
+# To-Do List Dictionary
+todo_list = {
+    1: {"task": "Buy groceries", "description": "Get milk, eggs, and bread"},
+    2: {"task": "Exercise", "description": "Go for a 30-minute jog"},
+    3: {"task": "Read a book", "description": "Read 20 pages of a novel"},
+    4: {"task": "Call Mom", "description": "Check in and have a chat"},
+    5: {"task": "Clean room", "description": "Organize and vacuum the room"},
+}
+
+# Function to display all tasks
+def see_tasks():
+    if not todo_list:
+        print("No tasks available.")
+        return
+    for task_id, details in todo_list.items():
+        print(f"{task_id}: {details['task']} - {details['description']}")
+
+# Function to add a new task
+def create_task():
+    task_id = max(todo_list.keys(), default=0) + 1
+    task = input("Enter task name: ")
+    description = input("Enter task description: ")
+    todo_list[task_id] = {"task": task, "description": description}
+    print(f"Task '{task}' added successfully!")
+
+# Function to update a task
+def update_task():
+    see_tasks()
+    task_id = int(input("Enter task ID to update: "))
+    if task_id in todo_list:
+        task = input("Enter new task name: ")
+        description = input("Enter new task description: ")
+        todo_list[task_id] = {"task": task, "description": description}
+        print(f"Task {task_id} updated successfully!")
+    else:
+        print("Task ID not found.")
+
+# Function to delete a task
+def delete_task():
+    see_tasks()
+    task_id = int(input("Enter task ID to delete: "))
+    if task_id in todo_list:
+        del todo_list[task_id]
+        print(f"Task {task_id} deleted successfully!")
+    else:
+        print("Task ID not found.")
+
+# Main function to handle user input
+def main():
+    while True:
+        print("\nTo-Do List Operations:")
+        print("1. See Tasks")
+        print("2. Create Task")
+        print("3. Update Task")
+        print("4. Delete Task")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        match choice:
+            case "1":
+                see_tasks()
+            case "2":
+                create_task()
+            case "3":
+                update_task()
+            case "4":
+                delete_task()
+            case "5":
+                print("Exiting program. Goodbye!")
+                break
+            case _:
+                print("Invalid choice. Please try again.") 
+
+# Run the main function
+if _name_ == "_main_":
+    main()
